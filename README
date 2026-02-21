@@ -56,8 +56,8 @@ The most significant and time consuming issue that we encountered during program
 We also had some issues compiling on our native workspace, as we had different versions of Java that weren't compatible with the JUnit files we found.
 
 SOURCES:
-We used GenAI, specifically ChatGPT, to locate dependencies for JUnit, and JUnit itself. From there, we also used it to write the command line arguments for compiling and running the code. 
-GenAI also recommended to us that we use LinkedHashMap and LinkedHashSet over their original counterparts. We looked deeper into some forums.
+We used GenAI, specifically ChatGPT, to locate dependencies for JUnit, and JUnit itself. From there, we also used it to write the command line arguments for compiling and running the code.
+GenAI also recommended to us that we use LinkedHashMap and LinkedHashSet over their original counterparts, and had some help implementing our toString method. We looked deeper into some forums.
 https://stackoverflow.com/questions/2623129/when-to-use-linkedhashmap-over-hashmap-in-java
 https://stackoverflow.com/questions/5080612/hashset-vs-linkedhashset
 
