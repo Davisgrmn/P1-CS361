@@ -5,7 +5,7 @@ import fa.State;
 /**
  * Represents a single state in a DFA.
  * Extends the abstract State class.
- * @author Adnan
+ * @author Davis and Ado
  */
 public class DFAState extends State {
 
