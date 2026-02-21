@@ -1,0 +1,65 @@
+****************
+* Project 1 - Deterministic Finite Automata
+* CS 361
+* 2/20/2026
+* Ado Maksic and Davis Garman
+****************
+
+OVERVIEW:
+* lib/hamcrest-core-1.3.jar - compiled dependency for JUnit 4
+* lib/junit-4.13.2.jar - compiled file for running tests
+
+* test/DFATest.java - source file
+
+* fa/FAInterface.java - source file
+* fa/State.java - source file
+
+* fa/dfa/DFAInterface.java - source file
+* fa/dfa/DFA.java - source file
+* fa/dfa/DFAState.java - source file
+* README - this file
+
+COMPILING AND RUNNING:
+From the directory containing all source files, compile the
+driver class (and all dependencies) with the command:
+
+$ javac -cp "lib/*;." fa/State.java fa/FAInterface.java fa/dfa/DFAInterface.java fa/dfa/DFAState.java fa/dfa/DFA.java test/dfa/DFATest.java
+
+Run the compiled class file with the command:
+
+$ java -cp "lib/*;." org.junit.runner.JUnitCore test.dfa.DFATest
+
+Console output will give the results after the program finishes.
+
+PROGRAM DESIGN AND IMPORTANT CONCEPTS:
+* This program models a DFA (Deterministic Finite Automata) as a 5-tuople (Q, Sigma, q0, F, and S).
+
+* /fa/ directory contains the general finite automaton framework, and /fa/dfa/ directory contains the DFA-specific implementation.
+
+Implemented Classes:
+* DFAState — Concrete subclass of State. Simply calls super(name); only exists to give the DFA package its own state type that can be extended independently of other automaton types.
+* DFA — Core implementation of DFAInterface. Stores 5-tuple characteristics in LinkedHash(Map/Set)
+    * Uses LinkedHashSet and LinkedHashMap instead of their originals, HashSet and HasmMap. Though the logic stays the same, our toString() methods would break (because originals don't allow collisions).
+
+Implemented Algorithms and Functions:
+* accepts(String s) — Simulates the DFA on an input string. Rejects if null, "e" is a special input for empty state, and is implemented to accept on final states.
+* swap(char symb1, char symb2) — Creates a deep copy of the DFA (new state objects, same names) and rebuilds every transition with symb1 and symb2 exchanged, leaving other symbols unchanged.
+* (makeKey) — Transition key encoding 
+
+In further versions or updates, changing the empty string "e" would be beneficial as the character 'e' would be accepted by our accepts() method.
+
+TESTING:
+Since we were given a source file containing all test cases, we made sure all of our test cases passed. Prior to this, we mapped everything out using graphical drawings to ensure that we could follow our logic and riddance any mistakes we had.
+
+DISCUSSION:
+The most significant and time consuming issue that we encountered during programming was debugging the logic behind accepting strings with the letter e. The project states that the single symbol string e represents the empty string symbol, and our logic recognized the letter e as an empty string and stopped immediately instead of transitioning to a new state. Also, if we did pass an empty string, the code would skip the "e" check and move to the loop. We eventually fixed the issue by updating our logic to make sure that e is handled as a special case only when nothing else is inputted. We had to make sure the loop never processes e as a transition if it needed to be processed as an empty string.
+We also had some issues compiling on our native workspace, as we had different versions of Java that weren't compatible with the JUnit files we found.
+
+SOURCES:
+We used GenAI, specifically ChatGPT, to locate dependencies for JUnit, and JUnit itself. From there, we also used it to write the command line arguments for compiling and running the code. 
+GenAI also recommended to us that we use LinkedHashMap and LinkedHashSet over their original counterparts. We looked deeper into some forums.
+https://stackoverflow.com/questions/2623129/when-to-use-linkedhashmap-over-hashmap-in-java
+https://stackoverflow.com/questions/5080612/hashset-vs-linkedhashset
+
+--------------------------------------------------------------------------
+--
